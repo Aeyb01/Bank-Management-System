@@ -87,7 +87,7 @@ public static string PromptUntilValid(string prompt, Func<string, bool> validato
 
 ### Logic / Display Separation
 
-All business logic classes (validators, handlers, executors) are free of any UI code. Display classes handle rendering only. This mirrors the architecture required for a strong achritechtural project.
+All business logic classes (validators, handlers, executors) are free of any UI code. Display classes handle rendering only. This reflects the architecture of a well-designed software project.
 
 ---
 
