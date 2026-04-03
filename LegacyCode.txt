@@ -1,0 +1,208 @@
+File: LegacyCode.txt
+
+This is old legacy code
+All code in here has been replaced by a better
+And a more structured one
+
+
+for (int i = 0; i < Length; i++)
+            {
+                
+            }
+
+
+
+            switch(Input)
+            {
+                case "0":
+                    return;
+
+                case "1":
+                    return;
+
+                default:
+                    throw new ArgumentOutOfRangeException("Error: Give a valid option.");
+            };
+
+
+
+// Dictionaries.cs
+
+namespace BankManagementSystem
+{
+    public static class Dictionaries
+    {
+        public static Dictionary<NoAccountOptions, Action> NoAccountMenuDict = new Dictionary<NoAccountOptions, Action>
+        {
+            { NoAccountOptions.Exit, () => Environment.Exit(0) },
+            { NoAccountOptions.CreateAccount, () => 
+                {
+                    // So apparently it appears that the `Value` key in
+                    // Dictionaries in C# could contain as much actions
+                    // And lines as I want more like an entire meni method
+                    // However, I need to be strict with SRP (single responsability
+                    // Principle) and SOC (Separation of concenrs).
+                    // The architecture will come later as my project grows
+                    // And as soon as the code gets repetitive tiwce.
+
+                    // Wait it seems like too many stuff are happening here
+                    // Why don't i simply separate them in their own method?
+                    // The dictionaries should ONLY input the menus  that 
+                    // The user has chosen (UI ONLY) The rest, like the logic
+                    // Would be only meant for a separated method/class 
+                    Console.WriteLine("Loading Creating Account Handler...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    AccountCreationUI.DisplayAccountCreationForm();
+                    HandleAccountCreationInput.CreateAccount();
+                }
+            }
+        };
+    }
+}
+
+
+
+
+
+
+namespace BankManagementSystem
+{
+    public class Name
+    {
+        public static string NameHandler()
+        {
+
+            (string firstName, int firstInputRow) = NamePosition("First");
+            ResetLine.LineResetor(firstInputRow);
+
+            // Show firstName in the formular
+			Console.SetCursorPosition(16, 7);
+            Console.Write(firstName);
+
+            // Now we'll go back to the buttom of the screen
+            ResetLine.LineResetor(firstName);
+
+            
+            // Now we take the lastName Here
+            (string lastName, int lastInputRow) = NamePosition("Last");
+			ResetLine.LineResetor(lastInputRow); 
+
+            string fullName = PolishName(firstName, lastName);
+
+            // Now we'll delete the name asking lines before return the full name
+
+            return fullName;
+        }
+
+
+
+
+// Let's First Of All validate whether the string '/'
+            // Exiits in the user's input
+            // There must be two of it
+
+            int lenght = birthDate.Length;
+            int counter = 0;
+
+            for (int i = 0; i < lenght; i++)
+            {
+                if (birthDate[i] == '/')
+                {
+                    counter++;
+                }
+            }
+
+            if (counter != 2)
+            {
+                PrintError();
+                return isValid;
+            }
+
+            // Now after validating the format
+
+
+
+// The methods in here MUST BE dynamic so even
+        // In the future when we do some changes 
+        // My code would be smart enough to identify
+        // The correct location automatically
+
+        public static (int column, int row) FullName()
+        {
+            int row = 0;
+            int column = 0;
+
+            string[] lines = AccountCreationUI.accountCreationLines;
+            
+            foreach (string line in lines)
+            {
+                row++;
+
+                if (line.Contains("Full Name:"))
+                {
+                    row--;
+                    break;
+                }
+            }
+
+            // Now after we've found the right line
+            // We'll need to find the right column
+            // but since lines is an array
+            // we'll have to take a specific line from
+            // That array and convert it into a string
+            // In order to apply the `IndexOf` method
+            // on it
+
+            string text = lines[row];
+            
+            column = text.IndexOf(":");
+
+            column += 5;
+
+            return(column, row);
+        }
+
+
+static (string, int) NamePosition(string position)
+        {
+            // So in order to create a new account we first
+            // Need to knwo the user's name obviously
+            // AND in order to align it beautifuly with the
+            // I'll need to keep prompting the user 
+            // Over and over for inputs to check them up
+            // I'll need to get the line's exact number
+            // in order to crash it and make a new one
+
+            string name;
+            int inputRow;
+            bool isNameValid;
+
+
+            while (true)
+            {
+                inputRow = Console.CursorTop; // Save the current line of asking for the name
+                Console.Write($"Enter {position} Name: ");
+                name = Console.ReadLine() ?? "";
+                isNameValid = VerifyName.NameVerifier(name);
+                if (!isNameValid)
+                {
+                    continue;
+                }
+                break;
+            }
+            
+            return (name, inputRow);
+        }
+
+
+
+public enum CreatingAccount
+    {
+        FullName,
+        DateOfBirth,
+        EmailAddress,
+        PhoneNumber,
+        Address,
+        
+    }
