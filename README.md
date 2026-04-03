@@ -101,7 +101,7 @@ All business logic classes (validators, handlers, executors) are free of any UI 
 ### Run
 
 ```bash
-git clone https://github.com/your-username/BankManagementSystem.git
+git clone https://github.com/Aeyb01/BankManagementSystem.git
 cd BankManagementSystem
 dotnet run
 ```
